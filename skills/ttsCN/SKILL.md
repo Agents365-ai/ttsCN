@@ -33,10 +33,46 @@ Automatically activate this skill when:
 - User wants to convert Chinese text to speech audio
 - Generating voice narration or voiceover for videos
 - Creating audiobook or podcast audio from text
+- User asks to compare TTS providers, choose a TTS backend, or see what voices are available
+- User asks about TTS pricing, features, or which provider supports cloning/SSML/dialects
 - User mentions any of: TTS, text-to-speech, 语音合成, 文字转语音, Edge TTS, Doubao TTS, CosyVoice, 火山引擎, 阿里云语音, Azure TTS, 腾讯云TTS, 百度语音, MiniMax, 讯飞语音
 - Any task where Chinese text-to-speech would be helpful
 
+## Provider Comparison Page
+
+**When the user wants to browse, compare, or choose a TTS provider, ALWAYS open the
+local HTML comparison page in their browser FIRST** — it's a visual, filterable table
+that is much faster to scan than reading text output.
+
+```bash
+# Open the comparison page
+open ~/.claude/skills/ttsCN/docs/providers.html
+```
+
+The comparison page includes:
+- **Filterable table** — filter by free, SSML, voice cloning, streaming, dialects, multilingual
+- **Per-provider detail panels** — cost, max chars/duration, clone method, emotion, languages
+- **Voice cards** — recommended voices with style descriptions and best-use labels
+- **API key links** — direct links to each provider's console for key acquisition
+
+This page is auto-generated from `data/providers.json`. Run `python scripts/build_docs.py`
+to regenerate it after editing the JSON.
+
+**After opening the page**, ask the user which backend and voice they'd like to use,
+then proceed to Step 2.
+
 ## Workflow
+
+### Step 0 — Show the comparison page (when comparing/choosing)
+
+If the user is browsing, comparing providers, or unsure which backend to use:
+
+```bash
+open ~/.claude/skills/ttsCN/docs/providers.html
+```
+
+This opens a filterable visual comparison in their browser. Let them explore,
+then ask which backend + voice they want.
 
 ### Step 1 — Understand the request
 
