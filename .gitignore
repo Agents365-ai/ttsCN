@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.pyo
+*.wav
+*.mp3
+.tts_part_*
+.tts_concat.txt
