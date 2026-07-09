@@ -17,17 +17,6 @@ Generate natural Chinese speech audio from text. **All backends work in China** 
 | SSML | Yes | No | No | Yes |
 | Setup | Zero | Medium | Easy | Medium |
 
-## Why This Skill?
-
-| Feature | This Skill | Native Claude Code | Other TTS Tools |
-|---------|-----------|-------------------|-----------------|
-| **Chinese TTS** | ✓ 8 backends, all work in China | ✗ No TTS capability | Partial |
-| **Free option** | ✓ Edge TTS, zero cost | ✗ N/A | Limited |
-| **Multi-backend** | ✓ 8 backends, switch freely | ✗ N/A | Usually single engine |
-| **Voice cloning** | ✓ 6 platforms support | ✗ N/A | Rare |
-| **SSML** | ✓ Edge/Azure/Tencent/Baidu/Xunfei | ✗ N/A | Partial |
-| **Agent-native** | ✓ JSON envelope + exit codes | ✗ N/A | Manual setup |
-
 ## Quick Start
 
 ```bash
