@@ -88,6 +88,40 @@ git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
 ### SkillsMP
 Discover and install at [skillsmp.com](https://skillsmp.com).
 
+## Support
+
+- [GitHub Issues](https://github.com/Agents365-ai/ttsCN/issues) — Bug reports, feature requests
+- [GitHub Discussions](https://github.com/Agents365-ai/ttsCN/discussions) — Questions, ideas
+
+## Support
+
+If this project helps you, feel free to support the author:
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/wechat-pay.png" width="180" alt="WeChat Pay">
+      <br>
+      <b>WeChat Pay</b>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/alipay.png" width="180" alt="Alipay">
+      <br>
+      <b>Alipay</b>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/buymeacoffee.png" width="180" alt="Buy Me a Coffee">
+      <br>
+      <b>Buy Me a Coffee</b>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/awarding/award.gif" width="180" alt="Reward">
+      <br>
+      <b>Reward</b>
+    </td>
+  </tr>
+</table>
+
 ## License
 
 [CC BY-NC 4.0](LICENSE) — Free for non-commercial use. Commercial use requires permission.
