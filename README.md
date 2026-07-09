@@ -17,6 +17,10 @@ Generate natural Chinese speech audio from text. **All backends work in China** 
 | SSML | Yes | No | No | Yes |
 | Setup | Zero | Medium | Easy | Medium |
 
+## Pipeline
+
+<img src="assets/workflow.png" width="450" alt="ttsCN Workflow">
+
 ## Quick Start
 
 ```bash
