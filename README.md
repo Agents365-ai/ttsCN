@@ -17,6 +17,17 @@ Generate natural Chinese speech audio from text. **All backends work in China** 
 | SSML | Yes | No | No | Yes |
 | Setup | Zero | Medium | Easy | Medium |
 
+## Why This Skill?
+
+| Feature | This Skill | Native Claude Code | Other TTS Tools |
+|---------|-----------|-------------------|-----------------|
+| **Chinese TTS** | ✓ 8 backends, all work in China | ✗ No TTS capability | Partial |
+| **Free option** | ✓ Edge TTS, zero cost | ✗ N/A | Limited |
+| **Multi-backend** | ✓ 8 backends, switch freely | ✗ N/A | Usually single engine |
+| **Voice cloning** | ✓ 6 platforms support | ✗ N/A | Rare |
+| **SSML** | ✓ Edge/Azure/Tencent/Baidu/Xunfei | ✗ N/A | Partial |
+| **Agent-native** | ✓ JSON envelope + exit codes | ✗ N/A | Manual setup |
+
 ## Quick Start
 
 ```bash
@@ -75,7 +86,12 @@ Create `~/.ttsCN.json` for defaults:
 ```bash
 # Plugin marketplace (recommended)
 /plugin install ttsCN@365-skills
+```
 
+Or tell your coding agent:
+> help me to install https://github.com/Agents365-ai/ttsCN.git
+
+```bash
 # Manual
 git clone https://github.com/Agents365-ai/ttsCN.git ~/.claude/skills/ttsCN/
 ```
@@ -87,11 +103,6 @@ git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
 
 ### SkillsMP
 Discover and install at [skillsmp.com](https://skillsmp.com).
-
-## Support
-
-- [GitHub Issues](https://github.com/Agents365-ai/ttsCN/issues) — Bug reports, feature requests
-- [GitHub Discussions](https://github.com/Agents365-ai/ttsCN/discussions) — Questions, ideas
 
 ## Support
 
@@ -121,6 +132,13 @@ If this project helps you, feel free to support the author:
     </td>
   </tr>
 </table>
+
+## Author
+
+**Agents365-ai**
+
+- Bilibili: https://space.bilibili.com/441831884
+- GitHub: https://github.com/Agents365-ai
 
 ## License
 

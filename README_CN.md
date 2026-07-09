@@ -17,6 +17,17 @@
 | SSML | 支持 | 不支持 | 不支持 | 支持 |
 | 配置难度 | 零 | 中 | 易 | 中 |
 
+## 为什么选择这个技能？
+
+| 特性 | 本技能 | 原生 Claude Code | 其他 TTS 工具 |
+|------|--------|-----------------|-------------|
+| **中文语音合成** | ✓ 8 个后端，均可国内使用 | ✗ 无 TTS 能力 | 部分支持 |
+| **免费方案** | ✓ Edge TTS，零成本 | ✗ 不适用 | 有限 |
+| **多后端切换** | ✓ 8 个后端自由切换 | ✗ 不适用 | 通常单引擎 |
+| **声音克隆** | ✓ 6 个平台支持 | ✗ 不适用 | 罕见 |
+| **SSML** | ✓ Edge/Azure/腾讯/百度/讯飞 | ✗ 不适用 | 部分支持 |
+| **Agent 原生** | ✓ JSON 输出 + 退出码 | ✗ 不适用 | 需自行编写 |
+
 ## 快速开始
 
 ```bash
@@ -80,7 +91,12 @@ python skills/ttsCN/scripts/tts.py --platform cosyvoice --voice longxiaoxia_v3 -
 ```bash
 # 插件市场（推荐）
 /plugin install ttsCN@365-skills
+```
 
+或者告诉你的 coding agent：
+> help me to install https://github.com/Agents365-ai/ttsCN.git
+
+```bash
 # 手动安装
 git clone https://github.com/Agents365-ai/ttsCN.git ~/.claude/skills/ttsCN/
 ```
@@ -121,6 +137,13 @@ git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
     </td>
   </tr>
 </table>
+
+## 作者
+
+**Agents365-ai**
+
+- Bilibili: https://space.bilibili.com/441831884
+- GitHub: https://github.com/Agents365-ai
 
 ## 许可证
 
