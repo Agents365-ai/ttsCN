@@ -93,6 +93,35 @@ git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
 ### SkillsMP
 在 [skillsmp.com](https://skillsmp.com) 发现并安装。
 
+## 支持
+
+如果这个项目对你有帮助，欢迎支持作者：
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/wechat-pay.png" width="180" alt="微信支付">
+      <br>
+      <b>微信支付</b>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/alipay.png" width="180" alt="支付宝">
+      <br>
+      <b>支付宝</b>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/buymeacoffee.png" width="180" alt="Buy Me a Coffee">
+      <br>
+      <b>Buy Me a Coffee</b>
+    </td>
+    <td align="center">
+      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/awarding/award.gif" width="180" alt="打赏作者">
+      <br>
+      <b>打赏作者</b>
+    </td>
+  </tr>
+</table>
+
 ## 许可证
 
 [CC BY-NC 4.0](LICENSE) — 免费非商业使用。商业使用需联系授权。
