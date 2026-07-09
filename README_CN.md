@@ -17,6 +17,10 @@
 | SSML | 支持 | 不支持 | 不支持 | 支持 |
 | 配置难度 | 零 | 中 | 易 | 中 |
 
+## 工作流程
+
+<img src="assets/workflow-cn.png" width="450" alt="ttsCN 工作流程">
+
 ## 快速开始
 
 ```bash
