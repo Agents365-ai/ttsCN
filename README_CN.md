@@ -95,4 +95,4 @@ git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
 
 ## 许可证
 
-[CC BY-NC 4.0](LICENSE) — 禁止商用，转载请注明出处。
+[CC BY-NC 4.0](LICENSE) — 免费非商业使用。商业使用需联系授权。
