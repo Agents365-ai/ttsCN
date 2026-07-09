@@ -75,7 +75,12 @@ Create `~/.ttsCN.json` for defaults:
 ```bash
 # Plugin marketplace (recommended)
 /plugin install ttsCN@365-skills
+```
 
+Or tell your coding agent:
+> help me to install https://github.com/Agents365-ai/ttsCN.git
+
+```bash
 # Manual
 git clone https://github.com/Agents365-ai/ttsCN.git ~/.claude/skills/ttsCN/
 ```
@@ -87,11 +92,6 @@ git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
 
 ### SkillsMP
 Discover and install at [skillsmp.com](https://skillsmp.com).
-
-## Support
-
-- [GitHub Issues](https://github.com/Agents365-ai/ttsCN/issues) — Bug reports, feature requests
-- [GitHub Discussions](https://github.com/Agents365-ai/ttsCN/discussions) — Questions, ideas
 
 ## Support
 
@@ -121,6 +121,13 @@ If this project helps you, feel free to support the author:
     </td>
   </tr>
 </table>
+
+## Author
+
+**Agents365-ai**
+
+- Bilibili: https://space.bilibili.com/441831884
+- GitHub: https://github.com/Agents365-ai
 
 ## License
 

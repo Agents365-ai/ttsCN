@@ -80,7 +80,12 @@ python skills/ttsCN/scripts/tts.py --platform cosyvoice --voice longxiaoxia_v3 -
 ```bash
 # 插件市场（推荐）
 /plugin install ttsCN@365-skills
+```
 
+或者告诉你的 coding agent：
+> help me to install https://github.com/Agents365-ai/ttsCN.git
+
+```bash
 # 手动安装
 git clone https://github.com/Agents365-ai/ttsCN.git ~/.claude/skills/ttsCN/
 ```
@@ -121,6 +126,13 @@ git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
     </td>
   </tr>
 </table>
+
+## 作者
+
+**Agents365-ai**
+
+- Bilibili: https://space.bilibili.com/441831884
+- GitHub: https://github.com/Agents365-ai
 
 ## 许可证
 
