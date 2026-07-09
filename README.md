@@ -90,4 +90,4 @@ Discover and install at [skillsmp.com](https://skillsmp.com).
 
 ## License
 
-[CC BY-NC 4.0](LICENSE) — 禁止商用，转载请注明出处。
+[CC BY-NC 4.0](LICENSE) — Free for non-commercial use. Commercial use requires permission.
