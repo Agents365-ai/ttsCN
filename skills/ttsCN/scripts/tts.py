@@ -271,7 +271,7 @@ Examples:
   %(prog)s "你好世界" output.wav
   %(prog)s --idempotency-key job-42 "你好" out.wav
   %(prog)s --platform doubao "你好" weather.wav
-  %(prog)s --voice zh-CN-YunxiNeural --rate +10% "text" out.wav
+  %(prog)s --voice zh-CN-YunxiNeural --rate +10%% "text" out.wav
   %(prog)s --input script.txt output.wav
   %(prog)s --format json --list
   %(prog)s --list --full --fields name,cost,supports_clone
@@ -292,7 +292,7 @@ Examples:
     parser.add_argument("--platform", "-p", choices=list(BACKENDS.keys()),
                         help="TTS backend (default: edge)")
     parser.add_argument("--voice", "-v", help="Voice name")
-    parser.add_argument("--rate", "-r", help="Speech rate, e.g. '+5%', '-10%'")
+    parser.add_argument("--rate", "-r", help="Speech rate, e.g. '+5%%', '-10%%'")
 
     # Output format
     parser.add_argument("--format", "-f", choices=["wav", "mp3", "json"], default=None,
