@@ -61,6 +61,23 @@ python skills/ttsCN/scripts/tts.py --voice zh-CN-YunyangNeural "在这片古老�
 python skills/ttsCN/scripts/tts.py --platform doubao --rate +10% "家人们！" douyin.wav
 ```
 
+## Voice Cloning
+
+Clone your own voice and use it by name (built-in for MiniMax and CosyVoice):
+
+```bash
+# MiniMax — local audio file, paid (~$1.5/voice), confirm with --yes
+python skills/ttsCN/scripts/tts.py clone create --platform minimax --audio my.wav --name myvoice --yes
+
+# CosyVoice — free enrollment, audio must be a public URL (10-20s)
+python skills/ttsCN/scripts/tts.py clone create --platform cosyvoice --audio https://example.com/my.wav --name myvoice
+
+# Speak with your voice
+python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platform minimax --voice myvoice
+```
+
+`clone list` / `clone delete --name X` manage stored voices (`~/.ttsCN.json`). Only clone voices you own or are authorized to use. Note: MiniMax deletes clones unused for 7 days; CosyVoice voices expire after 1 year unused.
+
 ## Config File
 
 Create `~/.ttsCN.json` for defaults:

@@ -64,6 +64,23 @@ python skills/ttsCN/scripts/tts.py --platform doubao --rate +10% "家人们！" 
 python skills/ttsCN/scripts/tts.py --platform cosyvoice --voice longxiaoxia_v3 --input chapter1.txt chapter1.wav
 ```
 
+## 声音克隆
+
+克隆你自己的声音，之后按名字直接使用（MiniMax 与 CosyVoice 内置支持）：
+
+```bash
+# MiniMax — 本地音频文件，付费（约 $1.5/音色，国内站首次使用收 ¥9.9），需 --yes 确认
+python skills/ttsCN/scripts/tts.py clone create --platform minimax --audio my.wav --name myvoice --yes
+
+# CosyVoice — 复刻免费，但音频必须是公网 URL（建议 10-20 秒）
+python skills/ttsCN/scripts/tts.py clone create --platform cosyvoice --audio https://example.com/my.wav --name myvoice
+
+# 用自己的声音合成
+python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platform minimax --voice myvoice
+```
+
+`clone list` / `clone delete --name X` 管理已存音色（存于 `~/.ttsCN.json`）。只克隆本人或已获授权的声音。注意：MiniMax 音色 7 天不用会被删除；CosyVoice 音色 1 年不用过期。
+
 ## 配置文件
 
 创建 `~/.ttsCN.json` 设置默认值：

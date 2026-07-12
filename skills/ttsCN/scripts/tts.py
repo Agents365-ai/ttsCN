@@ -38,7 +38,7 @@ from output import (
 import idempotency
 
 DEFAULT_BACKEND = "edge"
-VERSION = "1.1.0"
+VERSION = "1.3.0"
 
 # Compact fields for default JSON list (keep agent token cost low)
 _COMPACT_FIELDS = [
@@ -278,6 +278,8 @@ Examples:
   %(prog)s --dry-run "预览文本"
   %(prog)s schema backends
   %(prog)s schema backends.doubao
+  %(prog)s clone create --platform minimax --audio my.wav --name myvoice --yes
+  %(prog)s "正文" out.wav --platform minimax --voice myvoice
         """,
     )
 
@@ -340,6 +342,15 @@ def _resolve_backend_config(args):
         rate, rate_src = args.rate, "cli"
     else:
         rate, rate_src = resolve_speech_rate()
+
+    # Named cloned voice? Substitute the platform voice_id (see clone.py).
+    from clone import resolve_cloned_voice
+    cloned = resolve_cloned_voice(backend, voice)
+    if cloned:
+        voice, voice_src = cloned["voice_id"], "cloned:" + voice
+        if backend == "cosyvoice" and cloned.get("target_model"):
+            # Synthesis model must match the enrollment target_model.
+            os.environ["COSYVOICE_MODEL"] = cloned["target_model"]
     return backend, backend_src, voice, voice_src, rate, rate_src
 
 
@@ -355,6 +366,11 @@ def _resolve_output(args, backend, fmt):
 # ── Main ──────────────────────────────────────────────────────────────────
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "clone":
+        from clone import handle_clone
+        handle_clone(sys.argv[2:])
+        return
+
     if len(sys.argv) > 1 and sys.argv[1] == "schema":
         sp = argparse.ArgumentParser(description="Query provider registry as JSON")
         sp.add_argument("path", nargs="?", default="backends",
