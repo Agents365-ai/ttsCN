@@ -123,15 +123,50 @@ Confirm: output path, file size, audio duration.
 | **Max chars / chunk** | 2000 | 280 | 400 | 2000 | 150 | 500 | **3000** | 200 |
 | **Max duration / chunk** | ~10 min | ~1 min | ~2 min | ~10 min | ~30 s | ~2 min | ~5 min | ~1 min |
 | **SSML** | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| **Voice cloning** | ❌ | ✅ | ❌ | ✅ (gated) | ✅ | ✅ | ✅ | ✅ |
-| **Clone method** | — | seed-icl-2.0, 5s audio | — | Custom Neural Voice, 300+句 | 一句话(5-15s) / 基础版(10-20min) | 大模型复刻, 任意音频 | 5-20s, 零样本, 99%相似 | 一句话(≈3s), 500万+已创建 |
-| **Clone cost** | — | 150元/音色/年 | — | 企业定制报价 | API调用费 | 按次预付费 | ~$0.50/次 | 平台配额 |
+| **Voice cloning** | ❌ | ✅ | ✅ **CLI built-in** | ✅ (gated) | ✅ | ✅ | ✅ **CLI built-in** | ✅ |
+| **Clone method** | — | seed-icl-2.0, 5s audio | 音色复刻, 10-20s URL 音频 | Custom Neural Voice, 300+句 | 一句话(5-15s) / 基础版(10-20min) | 大模型复刻, 任意音频 | 5-20s, 零样本, 99%相似 | 一句话(≈3s), 500万+已创建 |
+| **Clone cost** | — | 150元/音色/年 | **免费**(合成正常计费) | 企业定制报价 | API调用费 | 按次预付费 | $1.5/音色(国内¥9.9首用) | 平台配额 |
 | **Emotion** | Via SSML | Limited | Via style | Via SSML | Via SSML | ✅ Native 8种 | ✅ Native 8种 | ✅ Native |
 | **Dialects** | ❌ | ❌ | ❌ | ❌ | Cantonese | 上海/河南/四川/湖南/贵州 | ❌ | ✅ 多方言 |
 | **Languages** | 100+ | CN/EN | CN | 100+ | CN/EN/Cantonese | CN/EN/JA | 40+ | **130+** |
 | **Streaming** | ✅ WebSocket | ✅ WebSocket | ✅ | ✅ SDK | ✅ WebSocket | ✅ WebSocket | ❌ (REST only) | ✅ WebSocket |
 | **Setup difficulty** | 零配置 | 中等 | 简单 | 中等 | 中等 | 简单 | 简单 | 中等 |
 | **API key** | None | VOLCENGINE_* | DASHSCOPE_KEY | AZURE_KEY | TENCENT_* | BAIDU_* | MINIMAX_KEY | XUNFEI_* |
+
+## Voice Cloning (`clone` command)
+
+Create a custom voice from reference audio, store it under a name, then use
+the name anywhere `--voice` is accepted. Built-in for **minimax** (local file
+OK, paid: ~$1.5/voice global site or ¥9.9 on first use China site, unused
+clones deleted after 7 days) and **cosyvoice** (enrollment free, audio must
+be a PUBLIC http(s) URL, 10-20s, voice expires after 1 year unused).
+
+```bash
+# MiniMax — local file, paid, must confirm with --yes
+python3 scripts/tts.py clone create --platform minimax --audio my_voice.wav --name myvoice --yes
+
+# CosyVoice — free, but --audio must be a public URL; --target-model must
+# match the synthesis model (default: $COSYVOICE_MODEL or cosyvoice-v3-flash)
+python3 scripts/tts.py clone create --platform cosyvoice --audio https://example.com/my.wav --name myvoice
+
+# Manage
+python3 scripts/tts.py clone list
+python3 scripts/tts.py clone delete --name myvoice [--remote]   # --remote: cosyvoice only
+
+# Use it — the stored name resolves to the platform voice_id automatically
+python3 scripts/tts.py "用我的声音说这句话" out.wav --platform minimax --voice myvoice
+```
+
+Rules the agent MUST follow:
+- MiniMax creation is paid — never run `clone create --platform minimax`
+  without the user's explicit confirmation (the CLI enforces `--yes`).
+- Only clone the user's own voice or one they are authorized to use — both
+  platforms contractually prohibit cloning third parties without consent.
+- Reference audio: clean single-speaker speech, no BGM, 10-20s is ideal.
+- Named voices live in `~/.ttsCN.json` under `cloned_voices`.
+
+Other platforms (Doubao/Tencent/Baidu/Xunfei/Azure) support cloning via
+their consoles — the resulting voice id also works as a plain `--voice`.
 
 ## Voice Guide
 
