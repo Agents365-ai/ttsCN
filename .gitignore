@@ -1,3 +1,9 @@
+# Claude
+AGENTS.md
+CLAUDE.md
+
+# Personal voice-clone recording script (local only)
+voice_clone_script.txt
 __pycache__/
 *.pyc
 *.pyo

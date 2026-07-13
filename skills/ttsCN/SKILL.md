@@ -2,8 +2,9 @@
 name: ttsCN
 description: Multi-platform Chinese TTS text-to-speech via Edge/Doubao/CosyVoice/Azure/Tencent/Baidu/MiniMax/Xunfei — 8 backends, all work in China
 author: Agents365-ai
+version: 1.3.1
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-07-13
 homepage: https://github.com/Agents365-ai/ttsCN
 metadata: {"openclaw":{"requires":{"bins":["python3","ffmpeg"]},"emoji":"🔊"}}
 ---
@@ -44,9 +45,12 @@ Automatically activate this skill when:
 local HTML comparison page in their browser FIRST** — it's a visual, filterable table
 that is much faster to scan than reading text output.
 
+All paths in this document are relative to this skill's root directory (the
+directory containing this SKILL.md) — resolve them against it.
+
 ```bash
-# Open the comparison page
-open ~/.claude/skills/ttsCN/docs/providers.html
+# Open the comparison page (path relative to this skill's directory)
+open docs/providers.html
 ```
 
 The comparison page includes:
@@ -68,7 +72,7 @@ then proceed to Step 2.
 If the user is browsing, comparing providers, or unsure which backend to use:
 
 ```bash
-open ~/.claude/skills/ttsCN/docs/providers.html
+open docs/providers.html
 ```
 
 This opens a filterable visual comparison in their browser. Let them explore,
@@ -107,7 +111,7 @@ Confirm: output path, file size, audio duration.
 | **Enterprise / SSML** | azure | zh-CN-XiaoxiaoNeural | Rich prosody control |
 | **Bulk / lowest cost** | tencent | 101001 | 0.75 RMB/10K chars |
 | **Emotion / dialects** | baidu | 3 or 4 | Emotion synthesis, Cantonese |
-| **Best quality / cloning** | minimax | female-shaonv | speech-2.8-hd, voice design |
+| **Best quality / cloning** | minimax | female-shaonv | speech-2.6-hd, voice design |
 | **Education / pro** | xunfei | xiaoyan | MOS 4.8, 500+ voices |
 | **Male narration** | edge | zh-CN-YunxiNeural | Energetic male voice |
 | **Documentary** | azure | zh-CN-YunyangNeural | Deep, professional male |
@@ -124,7 +128,7 @@ Confirm: output path, file size, audio duration.
 | **Max duration / chunk** | ~10 min | ~1 min | ~2 min | ~10 min | ~30 s | ~2 min | ~5 min | ~1 min |
 | **SSML** | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | **Voice cloning** | ❌ | ✅ | ✅ **CLI built-in** | ✅ (gated) | ✅ | ✅ | ✅ **CLI built-in** | ✅ |
-| **Clone method** | — | seed-icl-2.0, 5s audio | 音色复刻, 10-20s URL 音频 | Custom Neural Voice, 300+句 | 一句话(5-15s) / 基础版(10-20min) | 大模型复刻, 任意音频 | 5-20s, 零样本, 99%相似 | 一句话(≈3s), 500万+已创建 |
+| **Clone method** | — | seed-icl-2.0, 5s audio | 音色复刻, 10-20s URL 音频 | Custom Neural Voice, 300+句 | 一句话(5-15s) / 基础版(10-20min) | 大模型复刻, 任意音频 | 10s-5min音频, 零样本 | 一句话(≈3s), 500万+已创建 |
 | **Clone cost** | — | 150元/音色/年 | **免费**(合成正常计费) | 企业定制报价 | API调用费 | 按次预付费 | $1.5/音色(国内¥9.9首用) | 平台配额 |
 | **Emotion** | Via SSML | Limited | Via style | Via SSML | Via SSML | ✅ Native 8种 | ✅ Native 8种 | ✅ Native |
 | **Dialects** | ❌ | ❌ | ❌ | ❌ | Cantonese | 上海/河南/四川/湖南/贵州 | ❌ | ✅ 多方言 |
@@ -137,9 +141,12 @@ Confirm: output path, file size, audio duration.
 
 Create a custom voice from reference audio, store it under a name, then use
 the name anywhere `--voice` is accepted. Built-in for **minimax** (local file
-OK, paid: ~$1.5/voice global site or ¥9.9 on first use China site, unused
-clones deleted after 7 days) and **cosyvoice** (enrollment free, audio must
-be a PUBLIC http(s) URL, 10-20s, voice expires after 1 year unused).
+OK, 10s-5min audio, paid: ~$1.5/voice global site or ¥9.9 on first use China
+site; a new clone is TEMPORARY until its first real synthesis — use it within
+7 days [global site] / 48 h [China site] of creation or MiniMax deletes it,
+previews don't count; permanent after first use) and **cosyvoice** (enrollment
+free, audio must be a PUBLIC http(s) URL, 10-20s, voice expires after 1 year
+unused).
 
 ```bash
 # MiniMax — local file, paid, must confirm with --yes
@@ -249,44 +256,44 @@ their consoles — the resulting voice id also works as a plain `--voice`.
 
 ```bash
 # Default (Edge TTS, free, Xiaoxiao voice)
-python ~/.claude/skills/ttsCN/scripts/tts.py "你好世界" output.wav
+python3 scripts/tts.py "你好世界" output.wav
 
 # Specific voice
-python ~/.claude/skills/ttsCN/scripts/tts.py --voice zh-CN-YunxiNeural "欢迎收听今天的节目" welcome.wav
+python3 scripts/tts.py --voice zh-CN-YunxiNeural "欢迎收听今天的节目" welcome.wav
 
 # Specific backend
-python ~/.claude/skills/ttsCN/scripts/tts.py --platform doubao "今天天气真好" weather.wav
-python ~/.claude/skills/ttsCN/scripts/tts.py --platform minimax "高品质语音合成" hq.wav
+python3 scripts/tts.py --platform doubao "今天天气真好" weather.wav
+python3 scripts/tts.py --platform minimax "高品质语音合成" hq.wav
 
 # Adjust speed
-python ~/.claude/skills/ttsCN/scripts/tts.py --rate +15% "快速播报" fast.wav
-python ~/.claude/skills/ttsCN/scripts/tts.py --rate -10% "慢速朗读" slow.wav
+python3 scripts/tts.py --rate +15% "快速播报" fast.wav
+python3 scripts/tts.py --rate -10% "慢速朗读" slow.wav
 ```
 
 ### From File
 
 ```bash
-python ~/.claude/skills/ttsCN/scripts/tts.py --input script.txt output.wav
+python3 scripts/tts.py --input script.txt output.wav
 ```
 
 ### Output Format
 
 ```bash
 # MP3 output (compressed, smaller file)
-python ~/.claude/skills/ttsCN/scripts/tts.py --format mp3 "你好" hello.mp3
+python3 scripts/tts.py --format mp3 "你好" hello.mp3
 ```
 
 ### Preview (Dry Run)
 
 ```bash
 # Preview without making API call — no package installs needed
-python ~/.claude/skills/ttsCN/scripts/tts.py --dry-run "这是一段测试文本"
+python3 scripts/tts.py --dry-run "这是一段测试文本"
 ```
 
 ### List Options
 
 ```bash
-python ~/.claude/skills/ttsCN/scripts/tts.py --list
+python3 scripts/tts.py --list
 ```
 
 ## Requirements
@@ -300,7 +307,7 @@ pip install dashscope                              # CosyVoice
 pip install requests                               # Doubao, MiniMax
 pip install azure-cognitiveservices-speech          # Azure
 pip install tencentcloud-sdk-python-tts             # Tencent Cloud
-pip install baidu-aip                               # Baidu AI
+pip install baidu-aip chardet                       # Baidu AI
 pip install websocket-client                        # Xunfei
 ```
 
@@ -376,7 +383,7 @@ Priority (highest first):
 ### Quick Narration (Free, Zero Setup)
 
 ```bash
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   "人工智能正在改变我们的生活方式，从智能助手到自动驾驶，技术革新无处不在。" \
   ai_narration.wav
 ```
@@ -384,7 +391,7 @@ python ~/.claude/skills/ttsCN/scripts/tts.py \
 ### Douyin Style Short Video Voice
 
 ```bash
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   --platform doubao --voice BV001_streaming --rate +10% \
   "家人们，今天给大家推荐一个超好用的神器！" \
   douyin_style.wav
@@ -393,7 +400,7 @@ python ~/.claude/skills/ttsCN/scripts/tts.py \
 ### Male Documentary Voice
 
 ```bash
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   --voice zh-CN-YunyangNeural \
   "在遥远的非洲大草原上，生命的故事每天都在上演。" \
   documentary.wav
@@ -402,7 +409,7 @@ python ~/.claude/skills/ttsCN/scripts/tts.py \
 ### Audiobook from Script File (CosyVoice)
 
 ```bash
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   --platform cosyvoice --voice longxiaoxia_v3 \
   --input chapter1.txt chapter1.wav
 ```
@@ -411,7 +418,7 @@ python ~/.claude/skills/ttsCN/scripts/tts.py \
 
 ```bash
 TENCENT_SECRET_ID="xxx" TENCENT_SECRET_KEY="xxx" \
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   --platform tencent --voice 101001 \
   --input course_script.txt course_audio.wav
 ```
@@ -420,7 +427,7 @@ python ~/.claude/skills/ttsCN/scripts/tts.py \
 
 ```bash
 MINIMAX_API_KEY="xxx" \
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   --platform minimax --voice female-shaonv \
   "这是一段充满感情的语音合成演示。" premium.wav
 ```
@@ -429,7 +436,7 @@ python ~/.claude/skills/ttsCN/scripts/tts.py \
 
 ```bash
 XUNFEI_APP_ID="xxx" XUNFEI_API_KEY="xxx" XUNFEI_API_SECRET="xxx" \
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   --platform xunfei --voice xiaoyu \
   "今天我们来讲一个有趣的故事..." education.wav
 ```
@@ -438,7 +445,7 @@ python ~/.claude/skills/ttsCN/scripts/tts.py \
 
 ```bash
 BAIDU_APP_ID="xxx" BAIDU_API_KEY="xxx" BAIDU_SECRET_KEY="xxx" \
-python ~/.claude/skills/ttsCN/scripts/tts.py \
+python3 scripts/tts.py \
   --platform baidu --voice 3 \
   "今天真是令人兴奋的一天！" emotion.wav
 ```
@@ -479,7 +486,7 @@ tts.py --format json --platform doubao "test" out.wav
 |------|---------|-------------|
 | **0** | Success | Parse `data`, proceed |
 | **1** | Internal / runtime error | Report to user, do not retry |
-| **2** | Validation / input error | Fix input, retry allowed |
+| **2** | Validation / fixable error (bad input, missing package) | Fix input or install package, retry allowed |
 | **3** | Auth / missing credentials | Ask user for API key, do not retry |
 | **4** | Backend API error | Retry with backoff |
 

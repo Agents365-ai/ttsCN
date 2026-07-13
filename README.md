@@ -1,21 +1,34 @@
 # ttsCN — Multi-Platform Chinese TTS Skill
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-6C3C97)](https://claude.ai/code)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-compatible-orange)](https://openclaw.ai)
-[![SkillsMP](https://img.shields.io/badge/SkillsMP-indexed-blue)](https://skillsmp.com)
+[![GitHub stars](https://img.shields.io/github/stars/Agents365-ai/ttsCN?style=flat&logo=github)](https://github.com/Agents365-ai/ttsCN/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Agents365-ai/ttsCN?style=flat&logo=github)](https://github.com/Agents365-ai/ttsCN/network/members)
+[![Latest Release](https://img.shields.io/github/v/release/Agents365-ai/ttsCN?logo=github)](https://github.com/Agents365-ai/ttsCN/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/Agents365-ai/ttsCN?logo=github)](https://github.com/Agents365-ai/ttsCN/commits/main)
+
+[![SkillsMP](https://img.shields.io/badge/SkillsMP-listed-1f6feb)](https://skillsmp.com)
+[![ClawHub](https://img.shields.io/badge/ClawHub-listed-ff6b35)](https://clawhub.ai)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-8a2be2)](https://github.com/Agents365-ai/365-skills)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-2ea44f)](https://agentskills.io)
 
 [中文文档](README_CN.md)
 
 Generate natural Chinese speech audio from text. **All backends work in China** — no VPN needed.
 
+Works with Claude Code, Cursor, Codex, Copilot, Windsurf, Cline / Roo Code, Gemini CLI,
+Aider, Zed, OpenCode, OpenClaw / ClawHub, Hermes, pi-mono — plus major Chinese agents
+(Trae, Qwen Code / Tongyi Lingma, Baidu Comate, CodeGeeX) — and any agent that reads
+the [Agent Skills](https://agentskills.io) format.
+
 | Feature | Edge TTS | Doubao | CosyVoice | Azure |
 |---------|----------|--------|-----------|-------|
-| Cost | **Free** | ~0.2 RMB | ~0.2 RMB | ~1 USD |
+| Cost (per 10K chars) | **Free** | ~1 RMB | ~2 RMB | ~$1/M chars |
 | API key | None | Required | Required | Required |
 | Chinese voices | 20+ | 8 | 7 | 20+ |
 | SSML | Yes | No | No | Yes |
 | Setup | Zero | Medium | Easy | Medium |
+
+Full 8-backend comparison (incl. Tencent / Baidu / MiniMax / Xunfei): [docs/providers.md](skills/ttsCN/docs/providers.md)
 
 ## Pipeline
 
@@ -76,7 +89,7 @@ python skills/ttsCN/scripts/tts.py clone create --platform cosyvoice --audio htt
 python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platform minimax --voice myvoice
 ```
 
-`clone list` / `clone delete --name X` manage stored voices (`~/.ttsCN.json`). Only clone voices you own or are authorized to use. Note: MiniMax deletes clones unused for 7 days; CosyVoice voices expire after 1 year unused.
+`clone list` / `clone delete --name X` manage stored voices (`~/.ttsCN.json`). Only clone voices you own or are authorized to use. Note: a new MiniMax clone is temporary — use it in a real synthesis within 7 days (global site) / 48 h (China site) of creation or it is deleted (previews don't count); it is kept permanently after first use. CosyVoice voices expire after 1 year unused.
 
 ## Config File
 
@@ -102,13 +115,15 @@ Or tell your coding agent:
 > help me to install https://github.com/Agents365-ai/ttsCN.git
 
 ```bash
-# Manual
-git clone https://github.com/Agents365-ai/ttsCN.git ~/.claude/skills/ttsCN/
+# Manual — copy the inner skill folder (SKILL.md must sit at the install root)
+git clone https://github.com/Agents365-ai/ttsCN.git /tmp/ttsCN
+cp -r /tmp/ttsCN/skills/ttsCN ~/.claude/skills/ttsCN
 ```
 
 ### OpenClaw
 ```bash
-git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
+git clone https://github.com/Agents365-ai/ttsCN.git /tmp/ttsCN
+cp -r /tmp/ttsCN/skills/ttsCN ~/.openclaw/skills/ttsCN
 ```
 
 ### SkillsMP

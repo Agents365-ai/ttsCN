@@ -3,7 +3,10 @@
 Phase 1 platforms (pure-API, lowest friction):
   minimax    — upload local file (or URL) -> clone. Paid: ~$1.5/voice on the
                global site, ~9.9 RMB charged on first synthesis on the China
-               site. Unused clones are auto-deleted after 7 days.
+               site. A new clone is temporary: it must be used in a real
+               synthesis call (previews don't count) within 7 days (global
+               site) / 48 h (China site) of creation or MiniMax deletes it;
+               after that first use it is kept permanently.
   cosyvoice  — DashScope voice enrollment. Enrollment is free (synthesis
                billed normally) but the reference audio MUST be a public
                http(s) URL; voices expire after 1 year of no synthesis use.
@@ -150,7 +153,8 @@ def minimax_create(audio, name, voice_id=None):
         "platform": "minimax", "voice_id": vid,
         "created": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "source": audio,
-        "note": "auto-deleted by MiniMax if unused for 7 days",
+        "note": "temporary until first real synthesis — deleted if not used "
+                "within 7 days (global site) / 48h (China site) of creation",
     }
 
 
@@ -264,9 +268,10 @@ def handle_clone(argv):
             if not args.yes:
                 emit_error("confirmation_required",
                            "MiniMax voice cloning is PAID (~$1.5/voice on the "
-                           "global site; ~9.9 RMB on first use on the China site) "
-                           "and unused clones are deleted after 7 days. "
-                           "Re-run with --yes to confirm.",
+                           "global site; ~9.9 RMB on first use on the China site). "
+                           "A new clone is temporary — use it in a real synthesis "
+                           "within 7 days (global) / 48h (China site) or it is "
+                           "deleted. Re-run with --yes to confirm.",
                            exit_code=EXIT_VALIDATION, started_at=started_at)
             record = minimax_create(args.audio, args.name, args.voice_id)
         else:
@@ -307,8 +312,10 @@ def handle_clone(argv):
                                backend="cosyvoice", retryable=True,
                                exit_code=EXIT_BACKEND, started_at=started_at)
             else:
-                print("  MiniMax has no delete API — unused clones expire after "
-                      "7 days; removing local record only.", file=sys.stderr)
+                print("  MiniMax remote delete is not implemented in this CLI — "
+                      "never-used clones expire on their own (7 days global / "
+                      "48h China site); removing local record only.",
+                      file=sys.stderr)
         del voices[args.name]
         _save_voices(voices)
         emit_success({"deleted": args.name, "remote_deleted": remote_deleted,

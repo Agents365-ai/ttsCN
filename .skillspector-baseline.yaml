@@ -1,0 +1,325 @@
+# SkillSpector baseline — findings listed here are suppressed on future scans.
+# Edit 'reason' fields and add glob 'rules' as needed. See docs/SUPPRESSION.md.
+version: 1
+rules: []
+fingerprints:
+- hash: sha256:1a6bf85cb94f8e84
+  rule_id: AST3
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:1f350a6c5f2491f7
+  rule_id: AST4
+  file: scripts/backends/azure.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:07af507d08e12cc2
+  rule_id: AST4
+  file: scripts/backends/baidu.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:53eab3eaa7b8c022
+  rule_id: AST4
+  file: scripts/backends/baidu.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:010dc77900bed9bb
+  rule_id: AST4
+  file: scripts/backends/baidu.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:f37da153abbfbcd5
+  rule_id: AST4
+  file: scripts/backends/cosyvoice.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:057cfaefc643192a
+  rule_id: AST4
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:e06e5213c5a2e42d
+  rule_id: AST4
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:2e0c67968af70d93
+  rule_id: AST4
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:515aa131e2207d55
+  rule_id: AST4
+  file: scripts/backends/edge.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:769e15174053a758
+  rule_id: AST4
+  file: scripts/backends/edge.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:6a4a8e73f00b4e67
+  rule_id: AST4
+  file: scripts/backends/edge.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:7ddcb3aa63107914
+  rule_id: AST4
+  file: scripts/backends/minimax.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:14d4a3ca9171b4ad
+  rule_id: AST4
+  file: scripts/backends/minimax.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:6b24fe12c468aaa3
+  rule_id: AST4
+  file: scripts/backends/minimax.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:0043b673d5132774
+  rule_id: AST4
+  file: scripts/backends/tencent.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:56f0bfd55899a832
+  rule_id: AST4
+  file: scripts/backends/tencent.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:06bc4953e4be3951
+  rule_id: AST4
+  file: scripts/backends/tencent.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:3021b75b7bb5c39a
+  rule_id: AST4
+  file: scripts/backends/xunfei.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:a10202e6dedfcdf9
+  rule_id: AST4
+  file: scripts/backends/xunfei.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:5e22a6fa764e06db
+  rule_id: AST4
+  file: scripts/backends/xunfei.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:829cdeb7df9a150c
+  rule_id: AST4
+  file: scripts/tts.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:ae0a4e2fc121e786
+  rule_id: AST4
+  file: scripts/tts.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:6d8006baaf09e5f1
+  rule_id: TT3
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:7ffa654436d09441
+  rule_id: TT3
+  file: scripts/backends/minimax.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:64c67246e5ed727b
+  rule_id: TT3
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:bb5f99135d2be4ca
+  rule_id: TT2
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:9bd6845b0db55ca5
+  rule_id: TT3
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:d25f54e678da059b
+  rule_id: TT2
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:3f3eddd26b477f51
+  rule_id: LP3
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:8a574766446fc4db
+  rule_id: E1
+  file: data/providers.json
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:0bbf8946addf57ee
+  rule_id: E1
+  file: docs/providers.html
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:120c9dce6bc1e14b
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:861825d9db129259
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:d701837a4a2e7af9
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:b513f628c02ab7ef
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:da571760dc8781cc
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:5a1e0b60b1bfc921
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:cbd6f20cbe3eaf73
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:d27bba277d2deb1e
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:c96b615c1fdcc5bd
+  rule_id: E2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:3b7b7992421bf9b6
+  rule_id: E1
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:68024bb48cce12e3
+  rule_id: E1
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:ca2bcce747336aa1
+  rule_id: E1
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:0952750732c882e6
+  rule_id: E2
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:159b20283f6ad64e
+  rule_id: E2
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:a0b387353e260033
+  rule_id: E2
+  file: scripts/output.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:9bd186a635c57708
+  rule_id: EA2
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:fe95962ab29712df
+  rule_id: EA2
+  file: scripts/tts.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:53ae31bab1b81f32
+  rule_id: OH1
+  file: scripts/backends/azure.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:f8243c8b378a6832
+  rule_id: OH1
+  file: scripts/backends/baidu.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:3e0e0d42d805aa77
+  rule_id: OH1
+  file: scripts/backends/baidu.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:82b1b9c664053b24
+  rule_id: OH1
+  file: scripts/backends/baidu.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:bc8d1c8ad67e8de5
+  rule_id: OH1
+  file: scripts/backends/cosyvoice.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:afeb54747d45ed6e
+  rule_id: OH1
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:6c85295f32579866
+  rule_id: OH1
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:f1b2845bb98dab6e
+  rule_id: OH1
+  file: scripts/backends/doubao.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:5d979aa4c1863953
+  rule_id: OH1
+  file: scripts/backends/edge.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:3d9161e3238dc175
+  rule_id: OH1
+  file: scripts/backends/edge.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:dfbbd348baffc02b
+  rule_id: OH1
+  file: scripts/backends/edge.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:c09d4101d3e6b574
+  rule_id: OH1
+  file: scripts/backends/minimax.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:54a048a68177beeb
+  rule_id: OH1
+  file: scripts/backends/minimax.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:c9babd3e8aceee4a
+  rule_id: OH1
+  file: scripts/backends/minimax.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:2339c30a5a234758
+  rule_id: OH1
+  file: scripts/backends/tencent.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:2c9906c2eda40d97
+  rule_id: OH1
+  file: scripts/backends/tencent.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:64b2810412770e6a
+  rule_id: OH1
+  file: scripts/backends/tencent.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:d4fea852625f7c76
+  rule_id: OH1
+  file: scripts/backends/xunfei.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:5485ecf79a54617d
+  rule_id: OH1
+  file: scripts/backends/xunfei.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:4d3dc1e659eef7d0
+  rule_id: OH1
+  file: scripts/backends/xunfei.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:5e47577b25166847
+  rule_id: OH1
+  file: scripts/tts.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:8b9e4da86bf0821c
+  rule_id: OH1
+  file: scripts/tts.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:1eb6e9f9a4559f6e
+  rule_id: RA2
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:90f0e606f4342dce
+  rule_id: RA2
+  file: docs/providers.html
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:ace3bea4f01ce7cc
+  rule_id: RA2
+  file: scripts/backends/__init__.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:1130f22dca744e36
+  rule_id: RA2
+  file: scripts/clone.py
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:1aadfb76c9c6d77e
+  rule_id: TM1
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:a14994bc619c1d8f
+  rule_id: TM1
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:3177b96d95b1b77a
+  rule_id: TM1
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:8d10147ca954d5f5
+  rule_id: TM1
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
+- hash: sha256:309cfad626fa10af
+  rule_id: TM1
+  file: SKILL.md
+  reason: Accepted finding (auto-generated baseline)
