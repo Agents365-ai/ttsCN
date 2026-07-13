@@ -17,8 +17,8 @@
 
 支持 Claude Code、Cursor、Codex、Copilot、Windsurf、Cline / Roo Code、Gemini CLI、
 Aider、Zed、OpenCode、OpenClaw / ClawHub、Hermes、pi-mono，以及主流国产编程助手
-（Trae、通义灵码 / Qwen Code、百度 Comate、CodeGeeX）——任何能读取 `AGENTS.md`
-或 [Agent Skills](https://agentskills.io) 格式的智能体均可使用。
+（Trae、通义灵码 / Qwen Code、百度 Comate、CodeGeeX）——任何能读取
+[Agent Skills](https://agentskills.io) 格式的智能体均可使用。
 
 | 特性 | Edge TTS | 豆包 | CosyVoice | Azure |
 |------|----------|------|-----------|-------|

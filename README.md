@@ -18,7 +18,7 @@ Generate natural Chinese speech audio from text. **All backends work in China** 
 Works with Claude Code, Cursor, Codex, Copilot, Windsurf, Cline / Roo Code, Gemini CLI,
 Aider, Zed, OpenCode, OpenClaw / ClawHub, Hermes, pi-mono — plus major Chinese agents
 (Trae, Qwen Code / Tongyi Lingma, Baidu Comate, CodeGeeX) — and any agent that reads
-`AGENTS.md` or the [Agent Skills](https://agentskills.io) format.
+the [Agent Skills](https://agentskills.io) format.
 
 | Feature | Edge TTS | Doubao | CosyVoice | Azure |
 |---------|----------|--------|-----------|-------|
