@@ -92,7 +92,7 @@ python skills/ttsCN/scripts/tts.py clone create --platform cosyvoice --audio htt
 python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platform minimax --voice myvoice
 ```
 
-`clone list` / `clone delete --name X` 管理已存音色（存于 `~/.ttsCN.json`）。只克隆本人或已获授权的声音。注意：MiniMax 音色 7 天不用会被删除；CosyVoice 音色 1 年不用过期。
+`clone list` / `clone delete --name X` 管理已存音色（存于 `~/.ttsCN.json`）。只克隆本人或已获授权的声音。注意：MiniMax 新克隆的音色是临时的——创建后国际站 7 天 / 国内站 48 小时内需在正式合成中使用一次（试听不算），否则被删除；用过一次即永久保留。CosyVoice 音色 1 年不用会过期。
 
 ## 配置文件
 

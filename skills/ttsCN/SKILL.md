@@ -128,7 +128,7 @@ Confirm: output path, file size, audio duration.
 | **Max duration / chunk** | ~10 min | ~1 min | ~2 min | ~10 min | ~30 s | ~2 min | ~5 min | ~1 min |
 | **SSML** | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | **Voice cloning** | ❌ | ✅ | ✅ **CLI built-in** | ✅ (gated) | ✅ | ✅ | ✅ **CLI built-in** | ✅ |
-| **Clone method** | — | seed-icl-2.0, 5s audio | 音色复刻, 10-20s URL 音频 | Custom Neural Voice, 300+句 | 一句话(5-15s) / 基础版(10-20min) | 大模型复刻, 任意音频 | 5-20s, 零样本, 99%相似 | 一句话(≈3s), 500万+已创建 |
+| **Clone method** | — | seed-icl-2.0, 5s audio | 音色复刻, 10-20s URL 音频 | Custom Neural Voice, 300+句 | 一句话(5-15s) / 基础版(10-20min) | 大模型复刻, 任意音频 | 10s-5min音频, 零样本 | 一句话(≈3s), 500万+已创建 |
 | **Clone cost** | — | 150元/音色/年 | **免费**(合成正常计费) | 企业定制报价 | API调用费 | 按次预付费 | $1.5/音色(国内¥9.9首用) | 平台配额 |
 | **Emotion** | Via SSML | Limited | Via style | Via SSML | Via SSML | ✅ Native 8种 | ✅ Native 8种 | ✅ Native |
 | **Dialects** | ❌ | ❌ | ❌ | ❌ | Cantonese | 上海/河南/四川/湖南/贵州 | ❌ | ✅ 多方言 |
@@ -141,9 +141,12 @@ Confirm: output path, file size, audio duration.
 
 Create a custom voice from reference audio, store it under a name, then use
 the name anywhere `--voice` is accepted. Built-in for **minimax** (local file
-OK, paid: ~$1.5/voice global site or ¥9.9 on first use China site, unused
-clones deleted after 7 days) and **cosyvoice** (enrollment free, audio must
-be a PUBLIC http(s) URL, 10-20s, voice expires after 1 year unused).
+OK, 10s-5min audio, paid: ~$1.5/voice global site or ¥9.9 on first use China
+site; a new clone is TEMPORARY until its first real synthesis — use it within
+7 days [global site] / 48 h [China site] of creation or MiniMax deletes it,
+previews don't count; permanent after first use) and **cosyvoice** (enrollment
+free, audio must be a PUBLIC http(s) URL, 10-20s, voice expires after 1 year
+unused).
 
 ```bash
 # MiniMax — local file, paid, must confirm with --yes

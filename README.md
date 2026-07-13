@@ -89,7 +89,7 @@ python skills/ttsCN/scripts/tts.py clone create --platform cosyvoice --audio htt
 python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platform minimax --voice myvoice
 ```
 
-`clone list` / `clone delete --name X` manage stored voices (`~/.ttsCN.json`). Only clone voices you own or are authorized to use. Note: MiniMax deletes clones unused for 7 days; CosyVoice voices expire after 1 year unused.
+`clone list` / `clone delete --name X` manage stored voices (`~/.ttsCN.json`). Only clone voices you own or are authorized to use. Note: a new MiniMax clone is temporary — use it in a real synthesis within 7 days (global site) / 48 h (China site) of creation or it is deleted (previews don't count); it is kept permanently after first use. CosyVoice voices expire after 1 year unused.
 
 ## Config File
 

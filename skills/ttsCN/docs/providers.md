@@ -215,7 +215,7 @@
 | Max duration / chunk | ~5 分钟 |
 | SSML | False |
 | Voice cloning | True |
-| Clone detail | 快速复刻: 10s-5min音频, 全球站$1.5/音色(国内站首次使用¥9.9), 7天不用自动删除; tts.py clone create --platform minimax |
+| Clone detail | 快速复刻: 10s-5min音频, 全球站$1.5/音色(国内站首次使用¥9.9); 新音色为临时音色, 创建后全球站7天/国内站48小时内需正式合成一次(试听不算)否则删除, 用过即永久保留; tts.py clone create --platform minimax |
 | Emotion | Native 8种情感 (happy/sad/angry/fearful/calm/whisper...) |
 | Dialects | — |
 | Languages | 40+ (中/英/日/韩/法/德/西/阿...) |
