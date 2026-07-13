@@ -1,21 +1,34 @@
 # ttsCN — 多平台中文语音合成技能
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-6C3C97)](https://claude.ai/code)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-compatible-orange)](https://openclaw.ai)
-[![SkillsMP](https://img.shields.io/badge/SkillsMP-indexed-blue)](https://skillsmp.com)
+[![GitHub stars](https://img.shields.io/github/stars/Agents365-ai/ttsCN?style=flat&logo=github)](https://github.com/Agents365-ai/ttsCN/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Agents365-ai/ttsCN?style=flat&logo=github)](https://github.com/Agents365-ai/ttsCN/network/members)
+[![Latest Release](https://img.shields.io/github/v/release/Agents365-ai/ttsCN?logo=github)](https://github.com/Agents365-ai/ttsCN/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/Agents365-ai/ttsCN?logo=github)](https://github.com/Agents365-ai/ttsCN/commits/main)
+
+[![SkillsMP](https://img.shields.io/badge/SkillsMP-listed-1f6feb)](https://skillsmp.com)
+[![ClawHub](https://img.shields.io/badge/ClawHub-listed-ff6b35)](https://clawhub.ai)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-plugin-8a2be2)](https://github.com/Agents365-ai/365-skills)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-compatible-2ea44f)](https://agentskills.io)
 
 [English](README.md)
 
 将中文文本转换为自然语音。**所有后端均可在国内使用**，无需 VPN。
 
+支持 Claude Code、Cursor、Codex、Copilot、Windsurf、Cline / Roo Code、Gemini CLI、
+Aider、Zed、OpenCode、OpenClaw / ClawHub、Hermes、pi-mono，以及主流国产编程助手
+（Trae、通义灵码 / Qwen Code、百度 Comate、CodeGeeX）——任何能读取 `AGENTS.md`
+或 [Agent Skills](https://agentskills.io) 格式的智能体均可使用。
+
 | 特性 | Edge TTS | 豆包 | CosyVoice | Azure |
 |------|----------|------|-----------|-------|
-| 费用 | **免费** | ~0.2元 | ~0.2元 | ~1美元 |
+| 费用（每万字符） | **免费** | ~1元 | ~2元 | ~$1/百万字符 |
 | API密钥 | 无需 | 需要 | 需要 | 需要 |
 | 中文音色 | 20+ | 8 | 7 | 20+ |
 | SSML | 支持 | 不支持 | 不支持 | 支持 |
 | 配置难度 | 零 | 中 | 易 | 中 |
+
+完整 8 后端对比（含腾讯云 / 百度 / MiniMax / 讯飞）：[docs/providers.md](skills/ttsCN/docs/providers.md)
 
 ## 工作流程
 
@@ -107,13 +120,15 @@ python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platf
 > help me to install https://github.com/Agents365-ai/ttsCN.git
 
 ```bash
-# 手动安装
-git clone https://github.com/Agents365-ai/ttsCN.git ~/.claude/skills/ttsCN/
+# 手动安装 — 复制内层技能目录（SKILL.md 必须位于安装目录根部）
+git clone https://github.com/Agents365-ai/ttsCN.git /tmp/ttsCN
+cp -r /tmp/ttsCN/skills/ttsCN ~/.claude/skills/ttsCN
 ```
 
 ### OpenClaw
 ```bash
-git clone https://github.com/Agents365-ai/ttsCN.git ~/.openclaw/skills/ttsCN/
+git clone https://github.com/Agents365-ai/ttsCN.git /tmp/ttsCN
+cp -r /tmp/ttsCN/skills/ttsCN ~/.openclaw/skills/ttsCN
 ```
 
 ### SkillsMP

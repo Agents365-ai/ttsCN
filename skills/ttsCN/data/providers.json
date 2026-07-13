@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08",
+  "updated": "2026-07-13",
   "description": "ttsCN provider registry — single source of truth for all TTS backends. Edit this file to update --list output, docs/providers.html, and docs/providers.md.",
   "backends": [
     {
@@ -25,6 +25,7 @@
       "setup_label": "零配置",
       "env_vars": [],
       "pip_package": "edge-tts",
+      "import_module": "edge_tts",
       "pip_install": "pip install edge-tts",
       "api_url": "N/A (免费，无需注册)",
       "get_key_url": "",
@@ -98,6 +99,7 @@
         "VOLCENGINE_ACCESS_TOKEN"
       ],
       "pip_package": "requests",
+      "import_module": "requests",
       "pip_install": "pip install requests",
       "api_url": "https://openspeech.bytedance.com/api/v1/tts",
       "get_key_url": "https://console.volcengine.com/ark/region:ark+cn-beijing/apikey",
@@ -158,6 +160,7 @@
         "DASHSCOPE_API_KEY"
       ],
       "pip_package": "dashscope",
+      "import_module": "dashscope",
       "pip_install": "pip install dashscope",
       "api_url": "https://dashscope.aliyuncs.com/api/v1",
       "get_key_url": "https://bailian.console.aliyun.com/",
@@ -235,6 +238,7 @@
         "AZURE_SPEECH_KEY"
       ],
       "pip_package": "azure-cognitiveservices-speech",
+      "import_module": "azure.cognitiveservices.speech",
       "pip_install": "pip install azure-cognitiveservices-speech",
       "api_url": "https://eastasia.tts.speech.microsoft.com/",
       "get_key_url": "https://portal.azure.com/",
@@ -308,6 +312,7 @@
         "TENCENT_SECRET_KEY"
       ],
       "pip_package": "tencentcloud-sdk-python-tts",
+      "import_module": "tencentcloud",
       "pip_install": "pip install tencentcloud-sdk-python-tts",
       "api_url": "https://tts.tencentcloudapi.com/",
       "get_key_url": "https://console.cloud.tencent.com/tts",
@@ -370,7 +375,8 @@
         "BAIDU_SECRET_KEY"
       ],
       "pip_package": "baidu-aip",
-      "pip_install": "pip install baidu-aip",
+      "import_module": "aip",
+      "pip_install": "pip install baidu-aip chardet",
       "api_url": "https://tsn.baidu.com/text2audio",
       "get_key_url": "https://console.bce.baidu.com/ai/#/ai/speech/overview",
       "tags": [
@@ -442,6 +448,7 @@
         "MINIMAX_API_KEY"
       ],
       "pip_package": "requests",
+      "import_module": "requests",
       "pip_install": "pip install requests",
       "api_url": "https://api.minimax.io/v1/t2a_v2",
       "get_key_url": "https://platform.minimaxi.com/",
@@ -517,6 +524,7 @@
         "XUNFEI_API_SECRET"
       ],
       "pip_package": "websocket-client",
+      "import_module": "websocket",
       "pip_install": "pip install websocket-client",
       "api_url": "wss://tts-api.xfyun.cn/v2/tts",
       "get_key_url": "https://www.xfyun.cn/",

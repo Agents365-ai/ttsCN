@@ -33,12 +33,11 @@ from backends import (
 from output import (
     use_json, envelope, success, error, emit_success, emit_error,
     EXIT_OK, EXIT_INTERNAL, EXIT_VALIDATION, EXIT_AUTH, EXIT_BACKEND,
-    exit_for_error_code, SCHEMA_VERSION,
+    exit_for_error_code, SCHEMA_VERSION, VERSION,
 )
 import idempotency
 
 DEFAULT_BACKEND = "edge"
-VERSION = "1.3.0"
 
 # Compact fields for default JSON list (keep agent token cost low)
 _COMPACT_FIELDS = [
@@ -249,10 +248,35 @@ def _handle_schema(args):
                field="path", retryable=False, exit_code=EXIT_VALIDATION)
 
 
+def _ensure_mp3(output_file, started_at):
+    """Transcode output_file to MP3 in place if it isn't MP3 already."""
+    import subprocess
+    probe = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-show_entries", "format=format_name",
+         "-of", "csv=p=0", output_file],
+        capture_output=True, text=True,
+    )
+    if "mp3" in probe.stdout:
+        return
+    tmp_file = output_file + ".transcode.mp3"
+    conv = subprocess.run(
+        ["ffmpeg", "-y", "-i", output_file,
+         "-codec:a", "libmp3lame", "-qscale:a", "2", tmp_file],
+        capture_output=True, text=True,
+    )
+    if conv.returncode != 0:
+        emit_error("backend_error",
+                   "MP3 transcode failed: {}".format(conv.stderr[-200:]),
+                   retryable=False, exit_code=EXIT_BACKEND,
+                   started_at=started_at)
+    os.replace(tmp_file, output_file)
+
+
 def _get_providers_updated():
     try:
         import json
-        _ROOT = os.path.dirname(os.path.abspath(__file__))
+        # data/ sits at the skill root, one level above scripts/
+        _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         _path = os.path.join(_ROOT, "data", "providers.json")
         with open(_path) as f:
             return json.load(f).get("updated", "unknown")
@@ -525,7 +549,7 @@ def _run(args, started_at, json_mode=False):
         emit_error("tool_missing", str(e),
                    retryable=False, backend=backend,
                    extra={"install_cmd": e.install_cmd},
-                   exit_code=EXIT_INTERNAL, started_at=started_at)
+                   exit_code=EXIT_VALIDATION, started_at=started_at)
     except MissingEnvVarError as e:
         emit_error("auth_missing_env", str(e),
                    retryable=False, field=e.var, backend=backend,
@@ -550,6 +574,10 @@ def _run(args, started_at, json_mode=False):
         emit_error("backend_error", "Synthesis failed: {}".format(e),
                    retryable=True, backend=backend,
                    exit_code=EXIT_BACKEND, started_at=started_at)
+
+    # Most backends emit WAV regardless of output_fmt — transcode centrally
+    if output_fmt == "mp3":
+        _ensure_mp3(output_file, started_at)
 
     file_size = Path(output_file).stat().st_size
     elapsed = time.time() - started_at
