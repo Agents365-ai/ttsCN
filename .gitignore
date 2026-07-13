@@ -4,6 +4,9 @@ CLAUDE.md
 
 # Personal voice-clone recording script (local only)
 voice_clone_script.txt
+
+# Personal voice assets — reference audio + cloned-voice output (local only)
+personal/
 __pycache__/
 *.pyc
 *.pyo
