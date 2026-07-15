@@ -17,7 +17,7 @@ import os
 import sys
 import time
 
-SCHEMA_VERSION = "1.1.0"  # semver — bump on envelope/contract changes
+SCHEMA_VERSION = "1.2.0"  # semver — bump on envelope/contract changes
 
 # Fields deprecated in current version. Agents should migrate before removed_in.
 # {"old_field": {"replaced_by":"new_field", "removed_in":"1.2.0"}}
@@ -47,7 +47,7 @@ def _now_iso():
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
-VERSION = "1.3.2"  # tool version — single source of truth, imported by tts.py
+VERSION = "1.4.0"  # tool version — single source of truth, imported by tts.py
 
 
 def _get_version():

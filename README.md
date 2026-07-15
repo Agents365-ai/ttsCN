@@ -13,7 +13,12 @@
 
 [中文文档](README_CN.md)
 
-Generate natural Chinese speech audio from text. **All backends work in China** — no VPN needed.
+> **ttsCN — TTS, Cloud-Native: one CLI, every TTS cloud.**
+
+Generate natural speech audio from text — **11 backends** behind one CLI. The project
+started with China-friendly clouds (those 8 still work in China, no VPN needed) and now
+covers the international clouds too — ElevenLabs, OpenAI, Google — so the name fits
+better than ever.
 
 Works with Claude Code, Cursor, Codex, Copilot, Windsurf, Cline / Roo Code, Gemini CLI,
 Aider, Zed, OpenCode, OpenClaw / ClawHub, Hermes, pi-mono — plus major Chinese agents
@@ -28,7 +33,14 @@ the [Agent Skills](https://agentskills.io) format.
 | SSML | Yes | No | No | Yes |
 | Setup | Zero | Medium | Easy | Medium |
 
-Full 8-backend comparison (incl. Tencent / Baidu / MiniMax / Xunfei): [docs/providers.md](skills/ttsCN/docs/providers.md)
+| International | ElevenLabs | OpenAI TTS | Google Cloud TTS |
+|---------------|-----------|-----------|------------------|
+| Cost (approx.) | Paid tiers, from $5/mo | ~$15-30/M chars | ~$16/M chars, free tier |
+| API key env | `ELEVENLABS_API_KEY` | `OPENAI_API_KEY` | `GOOGLE_TTS_API_KEY` |
+| Voices | 20+ preset + cloning | 6 | 220+ |
+| Voice cloning | Yes (paid) | No | No |
+
+Full 11-backend comparison (incl. Tencent / Baidu / MiniMax / Xunfei / ElevenLabs / OpenAI / Google): [docs/providers.md](skills/ttsCN/docs/providers.md)
 
 ## Pipeline
 
@@ -57,6 +69,15 @@ Fast streaming TTS with diverse voice styles — audiobooks, education, customer
 
 ### Azure (Microsoft)
 Enterprise-grade TTS with rich SSML support. Use **eastasia** region for China.
+
+### ElevenLabs (International)
+Top-tier voice quality with instant voice cloning. Paid subscription tiers (from ~$5/mo). Default voice: Rachel.
+
+### OpenAI TTS (International)
+Simple REST API, 6 voices, multilingual auto-detect. ~$15-30/M chars (approximate). Default model `tts-1-hd`.
+
+### Google Cloud TTS (International)
+220+ voices across 40+ languages (incl. Mandarin). ~$16/M chars with a monthly free tier (approximate). Language auto-derived from the voice name.
 
 ## Voice Examples
 
@@ -90,6 +111,29 @@ python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platf
 ```
 
 `clone list` / `clone delete --name X` manage stored voices (`~/.ttsCN.json`). Only clone voices you own or are authorized to use. Note: a new MiniMax clone is temporary — use it in a real synthesis within 7 days (global site) / 48 h (China site) of creation or it is deleted (previews don't count); it is kept permanently after first use. CosyVoice voices expire after 1 year unused.
+
+## Word Timestamps, Pause Markers & Pronunciation Overrides
+
+**Word-level timestamps** (edge / azure): the JSON success envelope includes
+`data.word_boundaries` — native per-word timings in seconds, absolute within the
+output file. Absent for other platforms.
+
+```json
+"word_boundaries": [
+  {"text": "你好", "offset_sec": 0.1, "duration_sec": 0.45},
+  {"text": "世界", "offset_sec": 0.562, "duration_sec": 0.5}
+]
+```
+
+**Expressiveness markers** — accepted in input text on all platforms, never read aloud:
+`[PAUSE:0.8]` (pause in seconds, 0.01-99.99) and sound tags `(laughs)` `(chuckle)`
+`(sighs)` `(breath)` `(inhale)` `(exhale)` `(coughs)`. Azure renders pauses as SSML
+breaks; MiniMax renders pauses as `<#x#>` and voices sound tags when
+`MINIMAX_MODEL` is a `speech-2.8` model; other platforms strip all markers.
+
+**Pronunciation overrides** — `--phonemes overrides.json` fixes polyphonic Chinese
+characters, e.g. `{"行长": "hang2 zhang3"}`. Azure uses SSML phoneme tags, MiniMax
+inline pinyin annotations; other platforms ignore the flag.
 
 ## Config File
 
