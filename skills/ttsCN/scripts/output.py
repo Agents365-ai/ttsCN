@@ -25,9 +25,14 @@ DEPRECATED_FIELDS = {}
 
 _PREFERENCES_KEY = "TTS_FORMAT"
 
+# Captured at import time, before tts.py's json-mode `sys.stdout = sys.stderr`
+# redirect — envelope writes always reach the real stdout so backend progress
+# prints can never corrupt the JSON payload.
+_REAL_STDOUT = sys.stdout
+
 
 def _stdout_is_tty():
-    return hasattr(sys.stdout, "isatty") and sys.stdout.isatty()
+    return hasattr(_REAL_STDOUT, "isatty") and _REAL_STDOUT.isatty()
 
 
 def use_json(args):
@@ -89,7 +94,7 @@ def error(code, message, retryable=False, field=None, backend=None,
 
 
 def emit_success(data=None, started_at=None, **extra):
-    print(success(data, started_at=started_at, **extra))
+    print(success(data, started_at=started_at, **extra), file=_REAL_STDOUT)
     sys.exit(0)
 
 
@@ -108,7 +113,7 @@ def emit_error(code, message, retryable=False, field=None, backend=None,
     if backend:
         err["backend"] = backend
     err.update(extra)
-    print(envelope(False, error=err, started_at=started_at))
+    print(envelope(False, error=err, started_at=started_at), file=_REAL_STDOUT)
     sys.exit(exit_code)
 
 
