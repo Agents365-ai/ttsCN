@@ -409,10 +409,15 @@ def main():
     started_at = time.time()
 
     json_mode = (output_fmt == "json") if (output_fmt := _resolve_format(args)) else False
+    if json_mode:
+        # Backend synthesizers print progress to stdout; in JSON mode every
+        # such line must move to stderr so the envelope (written to the real
+        # stdout captured in output.py) is the only stdout payload.
+        sys.stdout = sys.stderr
     try:
         return _run(args, started_at, json_mode)
     finally:
-        pass
+        sys.stdout = sys.__stdout__
 
 
 def _run(args, started_at, json_mode=False):
