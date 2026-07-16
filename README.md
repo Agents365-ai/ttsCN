@@ -114,7 +114,7 @@ python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platf
 
 ## Word Timestamps, Pause Markers & Pronunciation Overrides
 
-**Word-level timestamps** (edge / azure / doubao / minimax): the JSON success envelope includes
+**Word-level timestamps** (edge / azure / doubao / minimax / cosyvoice): the JSON success envelope includes
 `data.word_boundaries` — native per-word timings in seconds, absolute within the
 output file. Absent for other platforms.
 

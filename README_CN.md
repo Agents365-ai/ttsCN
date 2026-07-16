@@ -116,7 +116,7 @@ python skills/ttsCN/scripts/tts.py "用我的声音说这句话" out.wav --platf
 
 ## 字级时间戳、停顿标记与发音校正
 
-**字级时间戳**（edge / azure / doubao / minimax）：JSON 成功输出中包含 `data.word_boundaries`——
+**字级时间戳**（edge / azure / doubao / minimax / cosyvoice）：JSON 成功输出中包含 `data.word_boundaries`——
 原生逐字时间信息，单位为秒，相对整个输出文件的绝对偏移。其他平台无此字段。
 
 ```json
