@@ -185,6 +185,33 @@ def test_minimax_subtitles_drop_engine_tokens():
     assert [w["text"] for w in out] == ["模", "型"]
 
 
+def test_cosyvoice_event_fold_last_wins():
+    from backends.cosyvoice import _extract_words, _to_boundaries
+    # words arrays grow progressively across result-generated events;
+    # the last event per sentence index carries the complete list.
+    def ev(words):
+        return json.dumps({"payload": {"output": {
+            "sentence": {"index": 0, "words": words},
+            "type": "sentence-synthesis"}}})
+    wbi = {}
+    _extract_words(ev([{"text": "你", "begin_time": 0, "end_time": 320}]), wbi)
+    _extract_words(ev([{"text": "你", "begin_time": 0, "end_time": 320},
+                       {"text": "好", "begin_time": 320, "end_time": 480}]), wbi)
+    _extract_words("not json", wbi)          # ignored
+    _extract_words(json.dumps({"header": {}}), wbi)  # no sentence — ignored
+    out = _to_boundaries(wbi, 10.0)
+    assert out == [
+        {"text": "你", "offset": 10.0, "duration": 0.32},
+        {"text": "好", "offset": 10.32, "duration": pytest.approx(0.16)},
+    ]
+
+
+def test_cosyvoice_boundaries_malformed():
+    from backends.cosyvoice import _to_boundaries
+    assert _to_boundaries({0: [{"text": "x"}]}, 0.0) == []
+    assert _to_boundaries({}, 0.0) == []
+
+
 def test_minimax_subtitles_sentence_only_or_malformed():
     from backends.minimax import _parse_subtitles
     # Sentence blocks without word data (global-site behavior) are skipped:
