@@ -1,4 +1,5 @@
 """Chunker bracket-guard, per-platform chunk preparation, envelope shaping."""
+import json
 import time
 
 import pytest
@@ -115,3 +116,81 @@ def test_envelope_omits_boundaries_for_float_return(monkeypatch, tmp_path):
 def test_envelope_omits_boundaries_for_empty_list(monkeypatch, tmp_path):
     data = _run_fake_synthesis(monkeypatch, tmp_path, (1.5, []))
     assert "word_boundaries" not in data
+
+
+# ── Backend boundary parsers (doubao frontend / minimax subtitles) ────────
+
+def test_doubao_frontend_words_parse():
+    from backends.doubao import _parse_frontend_words
+    frontend = json.dumps({
+        "words": [
+            {"word": "你", "start_time": 0.025, "end_time": 0.185},
+            {"word": "好", "start_time": 0.185, "end_time": 0.36},
+        ],
+        "phonemes": [{"phone": "C0n", "start_time": 0.025, "end_time": 0.1}],
+    })
+    out = _parse_frontend_words(frontend, 10.0)
+    assert out == [
+        {"text": "你", "offset": 10.025, "duration": pytest.approx(0.16)},
+        {"text": "好", "offset": 10.185, "duration": pytest.approx(0.175)},
+    ]
+
+
+def test_doubao_frontend_absent_or_malformed():
+    from backends.doubao import _parse_frontend_words
+    assert _parse_frontend_words(None, 0.0) == []
+    assert _parse_frontend_words("", 0.0) == []
+    assert _parse_frontend_words("not json", 0.0) == []
+    assert _parse_frontend_words('{"words": [{"word": "x"}]}', 0.0) == []
+
+
+def test_minimax_subtitles_parse_ms_to_sec():
+    from backends.minimax import _parse_subtitles
+    # Real payload shape (China site, subtitle_type=word): sentence blocks
+    # with nested timestamped_words; punctuation gets its own entry.
+    entries = [{
+        "text": "你好，", "time_begin": 0.0, "time_end": 725.3,
+        "timestamped_words": [
+            {"word": "你", "time_begin": 42.7, "time_end": 213.3},
+            {"word": "好", "time_begin": 213.3, "time_end": 341.3},
+            {"word": "，", "time_begin": 341.3, "time_end": 725.3},
+        ],
+    }]
+    out = _parse_subtitles(entries, 2.0)
+    assert out == [
+        {"text": "你", "offset": pytest.approx(2.0427),
+         "duration": pytest.approx(0.1706)},
+        {"text": "好", "offset": pytest.approx(2.2133),
+         "duration": pytest.approx(0.128)},
+        {"text": "，", "offset": pytest.approx(2.3413),
+         "duration": pytest.approx(0.384)},
+    ]
+
+
+def test_minimax_subtitles_drop_engine_tokens():
+    from backends.minimax import _parse_subtitles
+    # Pinyin annotations 字(zi4) come back as one entry per phonetic symbol,
+    # each with word="(zi4)"; sound tags behave the same. Only script chars
+    # may survive into the boundary stream.
+    entries = [{
+        "timestamped_words": [
+            {"word": "模", "time_begin": 128.0, "time_end": 298.7},
+            {"word": "(mo2)", "time_begin": 298.7, "time_end": 426.7},
+            {"word": "(mo2)", "time_begin": 426.7, "time_end": 512.0},
+            {"word": "型", "time_begin": 512.0, "time_end": 597.3},
+            {"word": "(chuckle)", "time_begin": 597.3, "time_end": 900.0},
+        ],
+    }]
+    out = _parse_subtitles(entries, 0.0)
+    assert [w["text"] for w in out] == ["模", "型"]
+
+
+def test_minimax_subtitles_sentence_only_or_malformed():
+    from backends.minimax import _parse_subtitles
+    # Sentence blocks without word data (global-site behavior) are skipped:
+    # coarse blocks would regress consumers below their estimation fallback.
+    assert _parse_subtitles(
+        [{"text": "你好世界。", "time_begin": 0, "time_end": 2000}], 0.0) == []
+    assert _parse_subtitles({"unexpected": "dict"}, 0.0) == []
+    assert _parse_subtitles(
+        [{"timestamped_words": [{"word": "x"}]}], 0.0) == []
