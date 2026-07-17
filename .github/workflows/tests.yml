@@ -13,7 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      # Provider SDKs are lazy-imported inside synthesize(); tests mock all
-      # network/provider calls, so pytest is the only dependency.
-      - run: pip install pytest
+      # Tests mock all network/provider calls; the international backends
+      # (elevenlabs/openai/google) import requests at load time, everything
+      # else is lazy-imported. Verified against a clean venv.
+      - run: pip install pytest requests
       - run: pytest -q
